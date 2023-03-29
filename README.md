@@ -180,8 +180,46 @@ DONE
 
 
 ### Step 5 - Create Bastion Host
+*Note: For high availability, it would be best to have one bastion host in each AZ. However, for simplicity, we will only create one Bastion Host - located in Public Subnet A (as shown in the "VPC Architecture Design" at the beginning of this ReadMe*
+
+1. Open the EC2 console
+2. Click "Instances" on the left-hand panel
+3. Click "Launch instances" button in the top right hand corner
+4. Name the instance "Bastion Host"
+5. Keep AMI as Linux, Keep architecutre 64-bit(x86), Keep instance type t2 micro (to stay within the free tier)
+6. Key Pair: Select "Proceed without a key pair (Not recommended)" *In this lab we will be using the EC2 Connect to SSH into our instance and to test our architecture. Thus, we will not need a key pair here. However, if you want to further secure your instance and if use your own SSH client then a key pair will be needed.*
+7. Edit Network Settings: Change the Default VPC to "Demo VPC", Change subnet to "Public Subnet A", Enable auto-assign public IP.
+8. Edit Security Group (SG): Select "Create security group", name the SG "BastionHostSG", Description:"Security group for Bastion Host" (Optional), Allow SSH from anywhere, 0.0.0.0/0
+9. Click "Launch instance" button at the bottom right hand corner
+DONE
+
+![image](https://user-images.githubusercontent.com/126350373/228643892-7adb9346-339f-456c-888e-04f57c7fee11.png)
+
+![image](https://user-images.githubusercontent.com/126350373/228644143-05007220-11c9-4487-9fab-1ee2988e4f77.png)
+
 
 ### Step 6 - Create Private EC2 Instances
+
+**Create Private Insance in Public Subnet A**
+1. Go back to the EC2 console
+2. Click "Launch instances" button in the top right hand corner
+3. Name the instance "Private Instance A"
+5. Keep AMI as Linux, Keep architecutre 64-bit(x86), Keep instance type t2 micro (to stay within the free tier)
+6. Key Pair: Click "Create new key pair", Name the keypair "VPCKeyPair", keep everything else default and click "Create key pair" button at the bottom right hand corner - the private key pair file will be downloaded to your computer. *Make sure to store this file in a known place on your computuer. We will have to use the contents in this file  a later step*
+
+![image](https://user-images.githubusercontent.com/126350373/228646209-628abad6-e9bc-42de-98df-25b13ff9071b.png)
+ 
+7. Edit Network Settings: Change the Default VPC to "Demo VPC", Change subnet to "Public Subnet A", Enable auto-assign public IP.
+8. Edit Security Group (SG): Select "Create security group", name the SG "BastionHostSG", Description:"Security group for Bastion Host" (Optional), Allow SSH from anywhere, 0.0.0.0/0
+9. Click "Launch instance" button at the bottom right hand corner
+DONE
+
+
+**Create Private Instance in Public Subnet B**
+1. Go back to the EC2 console
+2. Click "Launch instances" button in the top right hand corner
+3. Name the instance "Private Instance B"
+
 
 ## Test System
 
