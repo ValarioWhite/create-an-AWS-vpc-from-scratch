@@ -103,7 +103,7 @@ DONE
 3. Click the "Actions" dropdown button at the top right hand corner and click "Edit subnet associations"
 ![image](https://user-images.githubusercontent.com/126350373/228581548-563cfc33-6e07-4158-ad37-3e7e15c44518.png)
 
-4. Select "Public Subnet A" and "Public Subnet B" then click "Save associations" button in teh bottom right hand corner
+4. Select "Public Subnet A" and "Public Subnet B" then click "Save associations" button in the bottom right hand corner
 ![image](https://user-images.githubusercontent.com/126350373/228582272-5957adcf-7001-4891-bd67-01d06a10f422.png)
 
 *Assign Private Subnet to "Private Subnet A"*
@@ -120,6 +120,16 @@ DONE
 4. Select "Private Subnet B" and click "Save associations" button in teh bottom right hand corner
 DONE
 ![image](https://user-images.githubusercontent.com/126350373/228584165-9695f2f3-ef3a-487f-ab2a-92e7a639685a.png)
+
+**Update Public Route Table to make Subnets Public**
+1. Go back to the route tables dashboard
+2. Select "Public Route Table"
+3. Click the "Actions" dropdown button at the top right hand corner and click "Edit routes"
+4. Click "Add route", for Destination route select "0.0.0.0/0", for Target select "Internet Gateway" and select "Demo Internet Gateway", click "Save changes" button at the bottom right hand corner.
+DONE
+
+![image](https://user-images.githubusercontent.com/126350373/228596996-ff9e569a-b014-44fc-8b93-b569f106ba4a.png)
+
 
 ### Step 4 - Create NAT Gateway (NATGW)
 
@@ -141,11 +151,16 @@ DONE
 3. Select "Private Route Table A"
 4. Click the "Actions" dropdown button at the top right hand corner and click "Edit routes"
 5. Click "Add route", for Destination route select "0.0.0.0/0", for Target select "NAT Gateway" and select "NATGW A", click "Save changes" button at the bottom right hand corner.
+
 ![image](https://user-images.githubusercontent.com/126350373/228594577-b4956203-547e-4761-8d27-cd6ad636d462.png)
 
 6. Go back to the Route tables dashboard
 7. Select "Private Route Table B"
 8. Click "Actions" dropdown button at the top right hand corner and click "Edit routes"
+9. Click "Add route", for Destination route select "0.0.0.0/0", for Target select "NAT Gateway" and select "NATGW B", click "Save changes" button at the bottom right hand corner.
+DONE
+
+![image](https://user-images.githubusercontent.com/126350373/228595882-30cdb64f-ee69-427b-beb9-b2c67e6c7df9.png)
 
 
 ### Step 5
