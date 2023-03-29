@@ -136,7 +136,7 @@ DONE
 
 ### Step 4 - Create NAT Gateway (NATGW)
 
-**For high availability we will create 2 NATGW. One in each AZ (One in Public Subnet A and One in Public Subnet B)
+**For high availability we will create 2 NATGW. One in each AZ (One in Public Subnet A and One in Public Subnet B)**
 1. Open the VPC Console
 2. Click on "NAT gateways" on the left-hand panel 
 3. Click "Create NAT gateway" button in the top right hand corner
