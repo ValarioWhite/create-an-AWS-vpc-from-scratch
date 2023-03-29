@@ -200,30 +200,111 @@ DONE
 
 ### Step 6 - Create Private EC2 Instances
 
-**Create Private Insance in Public Subnet A**
+**Create Private Insance in Private Subnet A**
 1. Go back to the EC2 console
 2. Click "Launch instances" button in the top right hand corner
 3. Name the instance "Private Instance A"
-5. Keep AMI as Linux, Keep architecutre 64-bit(x86), Keep instance type t2 micro (to stay within the free tier)
-6. Key Pair: Click "Create new key pair", Name the keypair "VPCKeyPair", keep everything else default and click "Create key pair" button at the bottom right hand corner - the private key pair file will be downloaded to your computer. *Make sure to store this file in a known place on your computuer. We will have to use the contents in this file  a later step*
+4. Keep AMI as Linux, Keep architecutre 64-bit(x86), Keep instance type t2 micro (to stay within the free tier)
+5. Key Pair: Click "Create new key pair", Name the keypair "VPCKeyPair", keep everything else default and click "Create key pair" button at the bottom right hand corner - the private key pair file will be downloaded to your computer. *Make sure to store this file in a known place on your computuer. We will have to use the contents in this file  a later step*
 
 ![image](https://user-images.githubusercontent.com/126350373/228646209-628abad6-e9bc-42de-98df-25b13ff9071b.png)
  
-7. Edit Network Settings: Change the Default VPC to "Demo VPC", Change subnet to "Public Subnet A", Enable auto-assign public IP.
-8. Edit Security Group (SG): Select "Create security group", name the SG "BastionHostSG", Description:"Security group for Bastion Host" (Optional), Allow SSH from anywhere, 0.0.0.0/0
-9. Click "Launch instance" button at the bottom right hand corner
+6. Edit Network Settings: Change the Default VPC to "Demo VPC", Change subnet to "Private Subnet A", DO NOT enable auto-assign public IP (this is our private instance and it should not have a public IP address)
+7. Edit Security Group (SG): Select "Create security group", name the SG "PrivateInstanceSG", Description: "Security group for private instance A and private instance B" (Optional), Allow SSH from Custom: Select the SG of the Bastion Host
+8. Click "Launch instance" button at the bottom right hand corner
 DONE
 
+![image](https://user-images.githubusercontent.com/126350373/228650676-6fef5274-ee49-4a5e-81b4-f71bfff74e95.png)
 
-**Create Private Instance in Public Subnet B**
+![image](https://user-images.githubusercontent.com/126350373/228650998-9eaed998-3688-4101-8a93-433f6393e7e3.png)
+
+
+
+**Create Private Instance in Private Subnet B**
 1. Go back to the EC2 console
 2. Click "Launch instances" button in the top right hand corner
 3. Name the instance "Private Instance B"
+4. Keep AMI as Linux, Keep architecutre 64-bit(x86), Keep instance type t2 micro (to stay within the free tier)
+5. Key Pair: In the dropdown select the keypair "VPCKeyPair"
+6. Edit Network Settings: Change the Default VPC to "Demo VPC", Change subnet to "Private Subnet B", DO NOT enable auto-assign public IP (this is our private instance and it should not have a public IP address)
+7. Edit Security Group (SG): Click "Select existing security group", Select the "PrivateInstanceSG" SG, 
+8. Click "Launch instance" button at the bottom right hand corner
+DONE
 
+![image](https://user-images.githubusercontent.com/126350373/228653364-1bd7f61d-cca5-432f-87a7-a255d47d0a6f.png)
+
+![image](https://user-images.githubusercontent.com/126350373/228653516-ca811480-d6da-4d5e-b364-a01ea850e147.png)
 
 ## Test System
+We are going to test our infrastructure to make sure we can properly SSH into our Bastion host and our private EC2 instances. We will also make sure our Bastion host and our private instances have access to the internet via the route tables, the internet gateway, and the NAT gateway (private instances only)
 
 ### Step 7 - SSH into Bastion Host and into Private Instances to Test Connectivity
+
+**1. SSH into our Bastion Host using EC2 Connect**
+
+*EC2 connect is an AWS feature that allows us to easily and securely SSH into our instances without the need of an external SSH client like Putty*
+
+1. Open the EC2 console
+2. Select the "Bastion Host"
+3. Click the "Connect" button at the top right of the page
+
+![image](https://user-images.githubusercontent.com/126350373/228654938-26393ee3-a861-44d9-b157-eb8d86e04324.png)
+
+4. Click "Connect" button at the bottom right of the screen
+
+![image](https://user-images.githubusercontent.com/126350373/228655079-98275ea2-3720-4114-9457-d257fdaf2e2b.png)
+
+5. If you get a screen like the one above then you have successfully SSH into your Bastion host
+DONE
+
+![image](https://user-images.githubusercontent.com/126350373/228655564-2a6b359a-5453-46c0-8836-cc66973d7d39.png)
+
+**2. Test if the Bastion Host has access to the internet**
+1. Type "ping www.google.com" and hit Enter into the terminal window. You should receive feedback as shown in the screen shot below.
+2. Make sure to hold Ctrl and press "C" to stop the ping.
+3. If your outcome is similar to what's shown below then your Bastion host has access to the internet
+DONE
+
+![image](https://user-images.githubusercontent.com/126350373/228657219-8beb58e7-3770-45d0-96d4-1466dbff39f8.png)
+
+**3. SSH into Private Instance A from our Bastion Host**
+1. Type "nano VPCKeyPair.pem" and hit Enter (nano command allows us to create and store a text file within the terminal. We need to upload our VPCKeyPair so we can reference it when we SSH into the Private Instance)
+2. Go to the VPCKeyPair.pem file saved on your computer. Open it. Copy ALL the content. Paste it into the terminal (hint hold ctrl and shift and press "v")
+
+![image](https://user-images.githubusercontent.com/126350373/228658604-c20e78ed-3e44-46a1-a43c-dd21b656a489.png)
+
+3. Hold ctrl and press "X" to exit. Save the content by press Y for yes. Then press "Enter".
+
+*Our uploaded VPCKeyPair.pem text file is formated for others to access it (current chmod access code is 644 - "chmod 644"). It is required that your private key files are NOT accessible by others. Therefore, we must change the access permissions for only us to have access ("chmod 400"). For that we will use the "chmod" command*
+
+4. Type "chmod 400 VPCKeyPair.pem" and press Enter. This remove access for others and only allows read access to us. 
+
+*Now we are ready to SSH into our Private Instance A via our Bastion host by using our keypair*
+
+5. In a seperate tab, go to the EC2 console
+
+6. Select "Private instance A" and copy the private IP address as shown in the screenshot below. We will need to reference this IP address to SSH into it. Go back to the EC2 Connect Window terminal.
+
+![image](https://user-images.githubusercontent.com/126350373/228661710-5ff5a683-f441-4456-91f3-460760ac8da1.png)
+
+*Now we are ready to SSH into our Private Instance A via our Bastion host by using our keypair*
+
+7. Type "ssh ec2-user@INSERT YOUR PRIVATE IP ADDRESS YOU JUST COPIED -i VPCKeyPair.pem". Hit Enter.  *As an example Your code should look like this (your IP address will be different): "ssh ec2-user@10.0.19.224 -i VPCKeyPair.pem"*
+8. A prompt will come up asking if your are sure you want to connect. Type "yes" and you should have successfully SSH into your Private Instance A via your bastion host.
+DONE
+
+![image](https://user-images.githubusercontent.com/126350373/228663065-d23be228-e87d-4fa1-af66-ab0c02be8b09.png)
+
+**4. Test if Private Instance A has access to the internet**
+1. Type "ping www.google.com" and hit Enter into the terminal window. You should receive feedback as shown in the screen shot below.
+2. Make sure to hold Ctrl and press "C" to stop the ping.
+3. If your outcome is similar to what's shown below then your Bastion host has access to the internet
+DONE
+
+![image](https://user-images.githubusercontent.com/126350373/228663491-56e7dff6-bd56-4a0b-81f8-7c9f3d9d4385.png)
+
+**Repeat the Steps 3-4 for Private Instance B if you want to SSH into it and if you want to test if it has access to the internet.** *NOTE: Remember to use the correct private IP address when executing the "ssh ec2-user@10.0.19.224 -i VPCKeyPair.pem" command*
+
 
 ## Clean Up
 
