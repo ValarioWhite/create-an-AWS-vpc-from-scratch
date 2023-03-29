@@ -44,9 +44,11 @@ DONE
 DONE
 
 **Subnet 1 and 2**
+
 ![image](https://user-images.githubusercontent.com/126350373/228568919-d8ac38b8-33ab-427b-903f-e90003074ef6.png)
 
 **Subnet 3 and 4**
+
 ![image](https://user-images.githubusercontent.com/126350373/228569344-369ecf53-c992-4db2-b68a-da67840facbf.png)
 
 
