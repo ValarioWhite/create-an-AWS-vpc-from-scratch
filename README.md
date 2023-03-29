@@ -279,8 +279,6 @@ DONE
 
 4. Type "chmod 400 VPCKeyPair.pem" and press Enter. This remove access for others and only allows read access to us. 
 
-*Now we are ready to SSH into our Private Instance A via our Bastion host by using our keypair*
-
 5. In a seperate tab, go to the EC2 console
 
 6. Select "Private instance A" and copy the private IP address as shown in the screenshot below. We will need to reference this IP address to SSH into it. Go back to the EC2 Connect Window terminal.
@@ -290,6 +288,7 @@ DONE
 *Now we are ready to SSH into our Private Instance A via our Bastion host by using our keypair*
 
 7. Type "ssh ec2-user@INSERT YOUR PRIVATE IP ADDRESS YOU JUST COPIED -i VPCKeyPair.pem". Hit Enter.  *As an example Your code should look like this (your IP address will be different): "ssh ec2-user@10.0.19.224 -i VPCKeyPair.pem"*
+
 8. A prompt will come up asking if your are sure you want to connect. Type "yes" and you should have successfully SSH into your Private Instance A via your bastion host.
 DONE
 
@@ -308,4 +307,24 @@ DONE
 
 ## Clean Up
 
-### Step 8 - Delete the VPC
+### Step 8 - Delete all of the Instances - In the EC2 Console
+
+![image](https://user-images.githubusercontent.com/126350373/228665442-b78ba614-91bb-4c70-a874-367f9cc234bc.png)
+
+### Step 9 - Delete all NAT gateway (Make sure to delete BOTH NATGW A and NATGW B) - In the VPC Console
+
+![image](https://user-images.githubusercontent.com/126350373/228665747-deaddeb8-0fcf-4827-9257-d63965a77152.png)
+
+*Must wait until the EC2 instances and the NAT gateway to COMPLETELY Delete/Terminate before Step 10 (shouldn't take longer than 5-10mins)
+
+### Step 10 - Delete Demo VPC - In the VPC Console | FINAL STEP
+
+*Deleting the VPC will delete all of the associated subnets, internet gatways, route tables, security groups, etc*
+
+![image](https://user-images.githubusercontent.com/126350373/228666650-cca305cb-0584-4cc7-8d16-db3711d04e62.png)
+
+![image](https://user-images.githubusercontent.com/126350373/228666778-e6785315-7f80-45e3-a45a-b72b1a20f7a3.png)
+
+
+
+
