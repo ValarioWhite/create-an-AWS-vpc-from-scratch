@@ -65,7 +65,7 @@ DONE
 
 ![image](https://user-images.githubusercontent.com/126350373/228571396-7f1b9538-db67-4a0f-a1bd-d9a241e35e9e.png)
 
-**Attach the Internet Gateway to "Demo VPC" 
+**Attach the Internet Gateway to "Demo VPC"** 
 1. Go back to the internet gateway dashboard
 2. Select the newly created internet gateway called "Demo Internet Gateway"
 3. Click the "Actions" dropdown button at the top right hand corner and click "Attach to VPC"
@@ -99,6 +99,7 @@ DONE
 ![image](https://user-images.githubusercontent.com/126350373/228576825-affc7e25-31ce-4033-9ce6-ecb704cbe421.png)
 
 **Assign Subnets to Route Tables**
+
 *Assign Public Subnets to "Public Route Table"*
 1. Go back to the route tables dashboard
 2. Select "Public Route Table"
@@ -123,7 +124,7 @@ DONE
 DONE
 ![image](https://user-images.githubusercontent.com/126350373/228584165-9695f2f3-ef3a-487f-ab2a-92e7a639685a.png)
 
-**Update Public Route Table to make Subnets Public**
+**Update Public Route Table to make "Public Subnet A" and "Public Subnet B" Public**
 1. Go back to the route tables dashboard
 2. Select "Public Route Table"
 3. Click the "Actions" dropdown button at the top right hand corner and click "Edit routes"
@@ -140,11 +141,13 @@ DONE
 2. Click on "NAT gateways" on the left-hand panel 
 3. Click "Create NAT gateway" button in the top right hand corner
 4. Name the 1st NATGW "NATGW A", Select "Public Subnet A" that we created in a previous step, click "Allocate Elastic IP" button, and click "Create NAT gateway" button in the bottom right hand corner
+
 ![image](https://user-images.githubusercontent.com/126350373/228589852-71cb71e1-3edb-4149-af80-899e10deed72.png)
 
 5. Go back to the NATGW dashboard and click "Create NAT gateway" button in the top right hand corner
 6. Name the 2nd NATGW "NATGW B", Select "Public Subnet B" that we created in a previous step, click "Allocate Elastic IP" button, and click "Create NAT gateway" button in the bottom right hand corner
 DONE
+
 ![image](https://user-images.githubusercontent.com/126350373/228591148-56c2e540-32b6-42cf-93c3-b36fc178eb65.png)
 
 **Connect Route Tables to NATGW**
