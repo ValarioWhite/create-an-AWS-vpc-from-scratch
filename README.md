@@ -167,9 +167,26 @@ DONE
 
 ![image](https://user-images.githubusercontent.com/126350373/228595882-30cdb64f-ee69-427b-beb9-b2c67e6c7df9.png)
 
+### NOTE: The default NACL allows all inbound and all outbound. We will not change the default NACL settings in this lab. Found in VPC console.
 
-### Step 5
+**NACL Inbound Rules**
 
-### Step 6
+![image](https://user-images.githubusercontent.com/126350373/228600720-8b890a6d-c46c-4625-967f-b6a6d439e411.png)
 
-### Step 7
+**NACL Outbound Rules**
+
+![image](https://user-images.githubusercontent.com/126350373/228600965-4d9aef6e-e43e-409b-bbdc-e8f98bb7e3ce.png)
+
+
+
+### Step 5 - Create Bastion Host
+
+### Step 6 - Create Private EC2 Instances
+
+## Test System
+
+### Step 7 - SSH into Bastion Host and into Private Instances to Test Connectivity
+
+## Clean Up
+
+### Step 8 - Delete the VPC
