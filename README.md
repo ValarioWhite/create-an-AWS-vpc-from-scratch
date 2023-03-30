@@ -254,7 +254,7 @@ We are going to test our infrastructure to make sure we can properly SSH into ou
 
 ![image](https://user-images.githubusercontent.com/126350373/228655079-98275ea2-3720-4114-9457-d257fdaf2e2b.png)
 
-5. If you get a screen like the one above then you have successfully SSH into your Bastion host
+5. If you get a screen like the one below then you have successfully SSH into your Bastion host
 DONE
 
 ![image](https://user-images.githubusercontent.com/126350373/228655564-2a6b359a-5453-46c0-8836-cc66973d7d39.png)
