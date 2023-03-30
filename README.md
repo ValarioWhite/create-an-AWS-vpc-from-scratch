@@ -6,7 +6,7 @@ In this lab we will create a VPC from scratch in the AWS console using services/
 
 **VPC Architecture Design**
 
-![1  Serverless Microservices Architecture - VPC](https://user-images.githubusercontent.com/126350373/228558066-e55286c3-f72f-4d57-8e30-ee61ec53e3a4.png)
+![1  Serverless Microservices Architecture - VPC](https://user-images.githubusercontent.com/126350373/228864456-47f68dec-5a9d-4821-befe-e6ca118bdd69.png)
 
 ## Setup
 
