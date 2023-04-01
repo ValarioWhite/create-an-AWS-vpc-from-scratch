@@ -1,5 +1,7 @@
 # create-an-AWS-vpc-from-scratch
 
+***Click Here for Video Demonstration - youtu.be/r-26_oUKDA4***
+
 ## Lab Overview and Highlevel
 
 In this lab we will create a VPC from scratch in the AWS console using services/components like subnets, EC2 Instances, internet gateways, NAT gateways, etc. The VPC architecture that will be built in this lab is shown below.
