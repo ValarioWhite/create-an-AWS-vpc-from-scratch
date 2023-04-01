@@ -1,6 +1,6 @@
 # create-an-AWS-vpc-from-scratch
 
-***Click Here for Video Demonstration - youtu.be/r-26_oUKDA4 ***
+***Click Here for Video Demonstration - https://youtu.be/r-26_oUKDA4***
 
 ## Lab Overview and Highlevel
 
